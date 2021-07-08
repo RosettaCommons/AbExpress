@@ -48,7 +48,7 @@ Predicted expressabilities for each sequence (pair) are written into a tab separ
 
 ## Engineerability
 
-It has been shown, that the "engineerability" term can be ussed to estimate by how much the expressability can be improved via design.
+It has been shown, that the "engineerability" term can be used to estimate by how much the expressability can be improved via design.
 Same rules for the (imgt) numbering apply as for prediction. To calculate the expressability:
 
 `./engineerability.py --msa sample.fa --checkpoint my_model_1 --paired -o screening.tsv`
@@ -64,7 +64,7 @@ the engineerability term is the lower boundary of the expected expressability af
 |medium| 3.0 | 2.0 | 
 |strong| 4.0 | 2.0 |
 
-Example command for designing a structure on the pre trained Flu model 1 using the strong weighting scheme.
+Example command for designing a structure on the pre trained Flu model 0 using the strong weighting scheme.
 It is recommended to graft a resfile that repacks the pose, and allows design in the Fv region w/o CDR3 and Cysteins.
 
-`./design.py --pdb structure.pdb --xml xml/AbExpress.xml --script_vars weight_express=4 bonus_native=2 resfile=resfile msa=sample.fa model=pre-trained/Flu/model_1`
+`./design.py --pdb structure.pdb --xml xml/AbExpress.xml --script_vars weight_express=4 bonus_native=2 resfile=resfile msa=sample.fa model=pre-trained/Flu/manuscript_0`
