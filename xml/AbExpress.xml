@@ -1,0 +1,34 @@
+<ROSETTASCRIPTS>
+  <SCOREFXNS>
+    <ScoreFunction name="scorefxn" weights="ref2015.wts">
+      <Reweight scoretype="res_type_constraint" weight="0.0"/>
+    </ScoreFunction>
+    <ScoreFunction name="scorefxn_cst" weights="ref2015.wts">
+      <Reweight scoretype="PyRosettaEnergy_last" weight="1.0"/>
+    </ScoreFunction>
+  </SCOREFXNS>
+  <TASKOPERATIONS>
+    <InitializeFromCommandline name="ifcl"/>
+    <ReadResfile name="rrf" filename="%%resfile%%"/>
+  </TASKOPERATIONS>
+  <MOVE_MAP_FACTORIES>
+  </MOVE_MAP_FACTORIES>
+  <RESIDUE_SELECTORS>
+  </RESIDUE_SELECTORS>
+  <SIMPLE_METRICS>
+  </SIMPLE_METRICS>
+  <FILTERS>
+  </FILTERS>
+  <MOVERS>
+    <FavorNativeResidue name="favor" bonus="%%bonus_native%%"/>
+    <DeepExpressabilityMover name="expressability" weight="%%weight_express%%" msa="%%msa%%" checkpoint="%%model%%"/>
+    <PackRotamersMover name="design" scorefxn="scorefxn_cst" task_operations="rrf,ifcl"/>
+  </MOVERS>
+  <PROTOCOLS>
+    <Add mover="expressability"/>
+    <Add mover="favor"/>
+    <Add mover="design"/>
+  </PROTOCOLS>
+  <OUTPUT scorefxn="scorefxn"/>
+</ROSETTASCRIPTS>
+
